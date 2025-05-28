@@ -1,12 +1,13 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "./components/layout";
 
 function App() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-svh">
-        <Button variant="outline">Click me</Button>
-      </div>
+      <BrowserRouter>
+        <Layout>Hello</Layout>
+      </BrowserRouter>
     </>
   );
 }
