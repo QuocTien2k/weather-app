@@ -1,4 +1,5 @@
 import CurrentWeather from "@/components/current-weather";
+import HourlyTemprature from "@/components/hourly-temprature";
 import WeatherSkeleton from "@/components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,6 @@ import {
   useWeatherQuery,
 } from "@/hooks/use-weather";
 import { AlertTriangle, MapPin, RefreshCw } from "lucide-react";
-import React from "react";
 
 const WeatherDashboard = () => {
   const {
@@ -99,7 +99,10 @@ const WeatherDashboard = () => {
       <div className="space-y-4">
         {/* Favorive Cities */}
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold tracking-tight">My location</h1>
+          <h1 className="flex items-center text-xl font-bold tracking-tight">
+            <MapPin className="w-5 h-5 mr-2 text-red-500" />
+            Vị trí hiện tại
+          </h1>
           <Button
             variant="outline"
             size="icon"
@@ -116,12 +119,14 @@ const WeatherDashboard = () => {
 
         {/*Current and Hourly weather */}
         <div className="grid gap-6">
-          <div>
-            {/* Hourly temprature */}{" "}
+          <div className="flex flex-col lg:flex-row gap-4">
             <CurrentWeather
               data={weatherQuery.data}
               locationName={locationName}
             />
+
+            {/* Hourly temprature */}
+            <HourlyTemprature data={forecastQuery.data} />
           </div>
 
           <div>
