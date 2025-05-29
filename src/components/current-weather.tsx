@@ -16,6 +16,53 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
   } = data;
 
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
+
+  const translate = (description: string) => {
+    switch (description.toLowerCase()) {
+      case "clear sky":
+        return "Trời quang đãng";
+      case "few clouds":
+        return "Trời ít mây";
+      case "scattered clouds":
+        return "Mây rải rác";
+      case "broken clouds":
+        return "Mây đứt đoạn";
+      case "overcast clouds":
+        return "Mây u ám";
+      case "light rain":
+        return "Mưa nhẹ";
+      case "moderate rain":
+        return "Mưa vừa";
+      case "heavy intensity rain":
+        return "Mưa to";
+      case "very heavy rain":
+        return "Mưa rất to";
+      case "extreme rain":
+        return "Mưa cực lớn";
+      case "shower rain":
+        return "Mưa rào";
+      case "thunderstorm":
+        return "Giông bão";
+      case "snow":
+        return "Tuyết rơi";
+      case "mist":
+        return "Sương mù";
+      case "fog":
+        return "Sương dày";
+      case "haze":
+        return "Mù khô";
+      case "smoke":
+        return "Khói";
+      case "sand":
+      case "dust":
+        return "Bụi";
+      case "tornado":
+        return "Lốc xoáy";
+      default:
+        return description; // fallback nếu chưa có trong danh sách
+    }
+  };
+
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-6">
@@ -78,12 +125,12 @@ const CurrentWeather = ({ data, locationName }: CurrentWeatherProps) => {
             <div className="relative flex aspect-square w-full max-w-[200px] items-center justify-center">
               <img
                 src={`https://openweathermap.org/img/wn/${currentWeather.icon}@4x.png`}
-                alt={currentWeather.description}
+                alt={translate(currentWeather.description)}
                 className="h-full w-full object-contain"
               />
               <div className="absolute bottom-0 text-center">
                 <p className="text-sm font-medium capitalize">
-                  {currentWeather.description}
+                  {translate(currentWeather.description)}
                 </p>
               </div>
             </div>
